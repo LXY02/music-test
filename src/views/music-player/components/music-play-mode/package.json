@@ -1,0 +1,4 @@
+{
+  "name": "music-play-mode",
+  "main": "./music-play-mode.vue"
+}

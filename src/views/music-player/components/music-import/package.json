@@ -1,0 +1,4 @@
+{
+  "name": "music-import",
+  "main": "./music-import.vue"
+}
