@@ -1,7 +1,10 @@
 <template>
-    <div>
-        导入歌词
-        <input type="file" multiple @change="onSelect">
+    <div class="music-import">
+        <span @click="importLyric" class="import-btn">导入歌曲</span>
+        <br>
+        <div>
+            <input ref="fileInput" class="file-input" type="file" multiple @change="onSelect">
+        </div>
     </div>
 </template>
 
@@ -12,15 +15,18 @@
 
         data() {
             return {
-                musicList: [],
-                currMusic: null
+                clickEvent: null,
+                focusEvent: null
             };
         },
 
         methods: {
             onSelect({target: {files}}) {
-                console.log('---- ', files);
                 this.$emit('importMusic', files);
+            },
+
+            importLyric() {
+                this.$refs.fileInput.click();
             }
         }
     };
@@ -28,5 +34,18 @@
 </script>
 
 <style lang="stylus" scoped>
+
+    .music-import {
+        margin-bottom: 20px;
+
+        .import-btn {
+            cursor: pointer;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+    }
 
 </style>

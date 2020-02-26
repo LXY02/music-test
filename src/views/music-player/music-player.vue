@@ -3,7 +3,7 @@
         <div class="music-container d-flex">
             <div class="container-left d-flex flex-column">
                 <music-import @importMusic="importMusic"></music-import>
-                <music-list class="flex-grow-1"></music-list>
+                <music-list class="flex-grow-1" :music-list="musicList"></music-list>
             </div>
 
             <div class="container-right">
@@ -97,7 +97,9 @@
         padding: 20px;
 
         .music-container {
-            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            width: 85%;
             height: 60vh;
             color: $white;
             background: linear-gradient(135deg, #41b883, #4a9cee);
