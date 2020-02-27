@@ -6,6 +6,7 @@
                  v-for="(music, index) in musicList"
                  :key="index">
                 <div class="item-left">
+                    <span>播放</span>
                     <span>{{ music.name }}</span>
                 </div>
                 <span>{{ music.duration }}</span>
@@ -20,14 +21,17 @@
 
 <script>
 
+    import { createNamespacedHelpers } from 'vuex';
+
+    const { mapState } = createNamespacedHelpers('audio');
+
     export default {
         name: "MusicList",
 
-        props: {
-            musicList: {
-                type: Array,
-                default: () => ([])
-            }
+        computed: {
+            ...mapState([
+                'musicList',
+            ])
         }
     };
 
