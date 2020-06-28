@@ -1,5 +1,7 @@
 # vue-music
 
+## 一些写法参考借鉴了https://github.com/lizzz0523/limni的music-player
+
 ## Project setup
 ```
 npm install

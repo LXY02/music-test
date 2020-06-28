@@ -21,17 +21,34 @@
 
 <script>
 
-    import { createNamespacedHelpers } from 'vuex';
+    // import { createNamespacedHelpers } from 'vuex';
 
-    const { mapState } = createNamespacedHelpers('audio');
+    // const { mapState } = createNamespacedHelpers('audio');
+
+    import music from '@/common/util/audio';
 
     export default {
         name: "MusicList",
 
-        computed: {
-            ...mapState([
-                'musicList',
-            ])
+        // computed: {
+        //     ...mapState([
+        //         'musicList',
+        //     ])
+        // }
+        data() {
+            return {
+                musicList: []
+            };
+        },
+
+        mounted() {
+            music.onReady.listen(this.setMusicList);
+        },
+
+        methods: {
+            setMusicList() {
+                this.musicList = music.musicList;
+            }
         }
     };
 

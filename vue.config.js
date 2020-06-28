@@ -1,5 +1,18 @@
+const path = require('path');
+
 module.exports = {
     lintOnSave: false,
+
+    devServer: {
+        open: true, // 自动打开浏览器
+        port: '3001' // 端口号
+    },
+
+    chainWebpack: (config) => {
+        config.resolve.alias
+            .set('@', path.resolve(__dirname, 'src'));
+    },
+
     css: {
         loaderOptions: {
             // 给 stylus-loader 传递选项

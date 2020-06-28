@@ -16,6 +16,8 @@
                 </div>
             </div>
         </div>
+
+        <div @click="test">test</div>
     </div>
 </template>
 
@@ -38,6 +40,25 @@
             MusicList,
             MusicLyric,
             MusicPlayMode
+        },
+
+        data() {
+            return {
+                music: null
+            };
+        },
+
+        mounted() {
+            this.music = new Audio();
+        },
+
+        methods: {
+            test() {
+                console.log('test');
+                const url = 'https://public.yangqianguan.com/static/yqg-upload/mayuri/test/26915c7ea32e30e00df749299ca7f05c.mp3';
+                this.music.src = url;
+                this.music.play();
+            }
         }
     };
 

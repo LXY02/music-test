@@ -9,58 +9,30 @@
 </template>
 
 <script>
-
-    import { createNamespacedHelpers } from 'vuex';
-
-    const { mapActions } = createNamespacedHelpers('audio');
+    import music from '@/common/util/audio';
 
     export default {
         name: "MusicImport",
 
-        methods: {
-            ...mapActions(['setMusicList']),
+        mounted() {
+            console.log('---1 ', music);
+        },
 
+        methods: {
             async onSelect({target: {files}}) {
                 if (!files.length) return;
 
                 const musicListOrigin = Object.values(files);
                 const musicListLength = musicListOrigin.length;
-                let musicList = [];
 
                 for (let index = 0; index < musicListLength; index++) {
                     const file = musicListOrigin[index];
-                    const {name} = file;
-                    const url = URL.createObjectURL(file);
-                    const musicElement = new Audio(url);
-                    let duration = '';
-
-                    await new Promise(resolve => {
-                        musicElement.addEventListener('loadedmetadata', () => {
-                            duration = this.formatTotalTime(musicElement.duration);
-                            resolve();
-                        });
-                    });
-
-                    musicList.push({
-                        name,
-                        duration,
-                        url
-                    });
+                    await music.append(file);
                 }
-
-
-                this.setMusicList(musicList);
             },
 
             importLyric() {
                 this.$refs.fileInput.click();
-            },
-
-            formatTotalTime(time) {
-                const minutes = Math.trunc(time / 60).toString().padStart(2, '0');
-                const milliseconds = Math.trunc(time % 60).toString().padStart(2, '0');
-
-                return `${minutes}:${milliseconds}`;
             }
         }
     };
